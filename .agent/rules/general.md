@@ -55,5 +55,11 @@ Prioritize client-side rendering and logic to ensure maximum UI responsiveness. 
       </allowed_servers>
     </mcp_configurations>
 
+    <theming_and_styling>
+      <rule>Avoid using static color classes (e.g., <code>text-white</code>, <code>bg-black</code>) for primary UI elements as they break dark/light mode theming.</rule>
+      <rule>Prioritize using semantic color variables defined in <code>app/globals.css</code> (e.g., <code>text-foreground</code>, <code>bg-background</code>, <code>text-muted-foreground</code>).</rule>
+      <rule>Explicit bold colors (e.g., <code>bg-blue-500</code>, <code>text-red-600</code>) are acceptable when a specific, non-theme-dependent color is intended.</rule>
+    </theming_and_styling>
+
 </best_practices>
 </rules>
