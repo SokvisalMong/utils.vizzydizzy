@@ -75,7 +75,7 @@ export function ImagePreviewDialog({
                         </DialogClose>
                     </div>
                 </DialogHeader>
-                <div className="p-2 md:p-6 flex items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat relative min-h-[400px]">
+                <div className="p-2 md:p-6 flex items-center justify-center relative min-h-[400px]">
                     {previewUrl && (
                         <div className="relative w-full h-[60vh] min-h-[400px]">
                             <Image
