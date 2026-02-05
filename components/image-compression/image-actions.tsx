@@ -48,7 +48,6 @@ export function ImageActions({
                     <Button
                         onClick={onCompress}
                         disabled={selectedCount === 0 || isCompressing}
-                        className="shadow-lg shadow-primary/20"
                     >
                         {isCompressing ? (
                             <span className="flex items-center gap-2">

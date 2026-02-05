@@ -66,8 +66,8 @@ export default function Home() {
               className={isActive ? "group" : "cursor-not-allowed opacity-75"}
             >
               <Card className={cn(
-                "h-full transition-all duration-300 border-none shadow-md bg-card/50 backdrop-blur-sm",
-                isActive ? "hover:shadow-xl hover:-translate-y-1 hover:ring-2 hover:ring-primary/20" : ""
+                "h-full transition-all duration-300 border-none bg-card/50 backdrop-blur-sm",
+                isActive ? "hover:-translate-y-1 hover:ring-2 hover:ring-primary/20" : ""
               )}>
                 <CardHeader>
                   <div className="flex justify-between items-start mb-2">

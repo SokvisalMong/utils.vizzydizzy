@@ -178,7 +178,7 @@ export function ImageCompressor() {
   return (
     <TooltipProvider>
       <div className="space-y-8 animate-in fade-in duration-500">
-        <Card className="border-none shadow-xl bg-card/50 backdrop-blur-sm">
+        <Card className="border-none bg-card/50 backdrop-blur-sm">
           <CardHeader>
             <div className="flex items-center gap-2 text-primary">
               <IconPhoto size={24} />

@@ -83,7 +83,7 @@ export function ImagePreviewDialog({
                                 alt="Preview"
                                 fill
                                 unoptimized
-                                className="object-contain p-4 drop-shadow-2xl"
+                                className="object-contain p-4"
                             />
                         </div>
                     )}

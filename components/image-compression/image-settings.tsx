@@ -56,7 +56,7 @@ export function ImageSettings({ settings, onChange }: ImageSettingsProps) {
                         <Input
                             type="number"
                             placeholder="Optional"
-                            className="border-none shadow-none focus-visible:ring-0 h-7 bg-transparent px-1 text-right"
+                            className="border-none focus-visible:ring-0 h-7 bg-transparent px-1 text-right"
                             value={settings.targetSizeKB || ""}
                             onChange={(e) =>
                                 onChange({ ...settings, targetSizeKB: Number(e.target.value) })
