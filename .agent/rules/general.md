@@ -41,9 +41,19 @@ Prioritize client-side rendering and logic to ensure maximum UI responsiveness. 
 
     <project_organization>
       <modularity>Maintain strict code modularity by segregating concerns:</modularity>
-      <ui_components>Place reusable UI elements in the <code>/components</code> directory. Use nested subdirectories within <code>/components</code> to group related UI.</ui_components>
+      <ui_components>
+        <rule>Place reusable UI elements in the <code>/components</code> directory. Use nested subdirectories within <code>/components</code> to group related UI.</rule>
+        <rule>Primarily use Shadcn UI components for all UI elements.</rule>
+      </ui_components>
       <utility_logic>Place logic functions and helpers in the <code>/utils</code> directory. Use nested subdirectories within <code>/utils</code> to group related functionality.</utility_logic>
     </project_organization>
+
+    <mcp_configurations>
+      <allowed_servers>
+        <server>shadcn</server>
+        <server>next-devtools</server>
+      </allowed_servers>
+    </mcp_configurations>
 
 </best_practices>
 </rules>
