@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { 
-  IconPhoto, 
-  IconQrcode, 
-  IconPdf, 
-  IconArrowRight 
+import {
+  IconPhoto,
+  IconQrcode,
+  IconPdf,
+  IconArrowRight
 } from "@tabler/icons-react";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
@@ -60,8 +60,8 @@ export default function Home() {
           const isActive = tool.status === "Active";
 
           return (
-            <Link 
-              key={tool.title} 
+            <Link
+              key={tool.title}
               href={tool.href}
               className={isActive ? "group" : "cursor-not-allowed opacity-75"}
             >
@@ -88,12 +88,13 @@ export default function Home() {
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
-                  {isActive && (
-                    <div className="flex items-center gap-2 text-sm font-semibold text-primary">
-                      Launch Tool
-                      <IconArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-                    </div>
-                  )}
+                  <div className={cn(
+                    "flex items-center gap-2 text-sm font-semibold text-primary transition-opacity duration-300",
+                    isActive ? "opacity-0 group-hover:opacity-100" : "opacity-0 pointer-events-none"
+                  )}>
+                    Launch
+                    <IconArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+                  </div>
                 </CardContent>
               </Card>
             </Link>
