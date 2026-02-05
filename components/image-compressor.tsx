@@ -562,14 +562,6 @@ export function ImageCompressor() {
              <DialogTitle className="text-sm font-medium text-white truncate max-w-[80%]">
               {preview?.title}
             </DialogTitle>
-            <Button
-              variant="outline"
-              size="icon"
-              className="h-8 w-8 hover:bg-white/10 border-white/20 text-white rounded-full"
-              onClick={() => setIsPreviewOpen(false)}
-            >
-              <IconX size={14} />
-            </Button>
           </DialogHeader>
           <div className="p-2 md:p-6 flex items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat">
             {preview && (
