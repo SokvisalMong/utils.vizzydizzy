@@ -4,10 +4,14 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import {
     Dialog,
+    DialogClose,
     DialogContent,
+    DialogDescription,
     DialogHeader,
     DialogTitle,
 } from "@/components/ui/dialog";
+import { IconX } from "@tabler/icons-react";
+import { Button } from "@/components/ui/button";
 
 interface ImagePreviewDialogProps {
     image?: string | File | null;
@@ -47,15 +51,33 @@ export function ImagePreviewDialog({
 
     return (
         <Dialog open={open} onOpenChange={onOpenChange}>
-            <DialogContent className="max-w-[95vw] md:max-w-4xl max-h-[90vh] p-0 overflow-hidden border-none bg-black/90 backdrop-blur-md">
-                <DialogHeader className="p-4 bg-background/50 border-b border-white/10 flex flex-row items-center justify-between shrink-0">
-                    <DialogTitle className="text-sm font-medium text-white truncate max-w-[80%]">
+            <DialogContent
+                showCloseButton={false}
+                className="max-w-[calc(100%-2rem)] sm:max-w-5xl lg:max-w-7xl p-0 overflow-hidden border-none bg-black/90 backdrop-blur-md max-h-[90vh] flex flex-col !gap-0"
+            >
+                <DialogHeader className="p-4 bg-background/50 border-b border-white/10 flex flex-row items-center justify-between shrink-0 gap-4">
+                    <DialogTitle className="text-sm font-medium text-white truncate min-w-0 flex-1">
                         {title || (image instanceof File ? image.name : "Image Preview")}
                     </DialogTitle>
+                    <div className="flex items-center gap-2">
+                        <DialogDescription className="sr-only">
+                            Preview of the selected image.
+                        </DialogDescription>
+                        <DialogClose asChild>
+                            <Button
+                                variant="ghost"
+                                size="icon-sm"
+                                className="text-white/50 hover:text-white hover:bg-white/10"
+                            >
+                                <IconX size={16} />
+                                <span className="sr-only">Close</span>
+                            </Button>
+                        </DialogClose>
+                    </div>
                 </DialogHeader>
                 <div className="p-2 md:p-6 flex items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat relative min-h-[400px]">
                     {previewUrl && (
-                        <div className="relative w-full h-full min-h-[400px]">
+                        <div className="relative w-full h-[60vh] min-h-[400px]">
                             <Image
                                 src={previewUrl}
                                 alt="Preview"
