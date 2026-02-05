@@ -28,7 +28,7 @@ const tools = [
   },
   {
     title: "QR Code Generator",
-    description: "Create professional QR codes for links, text, or contact info.",
+    description: "QR Code generator for links, text, etc.",
     href: "#",
     icon: IconQrcode,
     status: "Planned",
@@ -37,7 +37,7 @@ const tools = [
   },
   {
     title: "PDF to Image",
-    description: "Convert PDF pages into high-quality JPEG or PNG images.",
+    description: "Convert PDF pages into JPEG or PNG images.",
     href: "#",
     icon: IconPdf,
     status: "Planned",
