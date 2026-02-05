@@ -43,7 +43,7 @@ Prioritize client-side rendering and logic to ensure maximum UI responsiveness. 
       <modularity>Maintain strict code modularity by segregating concerns:</modularity>
       <ui_components>
         <rule>Place reusable UI elements in the <code>/components</code> directory. Use nested subdirectories within <code>/components</code> to group related UI.</rule>
-        <rule>Primarily use Shadcn UI components for all UI elements.</rule>
+        <rule>Strictly use Shadcn UI components for ALL UI elements whenever an equivalent exists. Avoid native HTML elements (e.g., use <code>Checkbox</code> instead of <code>&lt;input type="checkbox"&gt;</code>, <code>Separator</code> instead of horizontal lines/borders, and <code>next/image</code> instead of <code>&lt;img&gt;</code>).</rule>
       </ui_components>
       <utility_logic>Place logic functions and helpers in the <code>/utils</code> directory. Use nested subdirectories within <code>/utils</code> to group related functionality.</utility_logic>
     </project_organization>

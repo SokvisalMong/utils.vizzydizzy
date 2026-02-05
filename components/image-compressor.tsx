@@ -41,6 +41,16 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Badge } from "@/components/ui/badge";
+import { Checkbox } from "@/components/ui/checkbox";
+import Image from "next/image";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { Separator } from "@/components/ui/separator";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 import {
   ImageItem,
@@ -237,7 +247,8 @@ export function ImageCompressor() {
   const allSelected = images.length > 0 && selectedIds.length === images.length;
 
   return (
-    <div className="space-y-8 animate-in fade-in duration-500">
+    <TooltipProvider>
+      <div className="space-y-8 animate-in fade-in duration-500">
       <Card className="border-none shadow-xl bg-card/50 backdrop-blur-sm">
         <CardHeader>
           <div className="flex items-center gap-2 text-primary">
@@ -343,73 +354,85 @@ export function ImageCompressor() {
           </div>
 
           {/* Action Bar */}
-          <div className="flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-border/50">
-            <div className="flex items-center gap-2">
-              <Button
-                onClick={handleCompress}
-                disabled={selectedIds.length === 0 || isCompressing}
-                className="shadow-lg shadow-primary/20"
-              >
-                {isCompressing ? (
-                  <span className="flex items-center gap-2">
-                    <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
-                    Processing...
-                  </span>
-                ) : (
-                  <span className="flex items-center gap-2">
-                    <IconPhoto size={18} />
-                    Compress {selectedIds.length > 0 && `(${selectedIds.length})`}
-                  </span>
-                )}
-              </Button>
-              {images.length > 0 && (
-                <Button 
-                  variant="outline" 
-                  onClick={handleToggleSelectAll}
-                  className="bg-background/50"
+          <div className="space-y-4 pt-4">
+            <Separator className="bg-border/50" />
+            <div className="flex flex-wrap items-center justify-between gap-4">
+              <div className="flex items-center gap-2">
+                <Button
+                  onClick={handleCompress}
+                  disabled={selectedIds.length === 0 || isCompressing}
+                  className="shadow-lg shadow-primary/20"
                 >
-                  {allSelected ? "Unselect All" : "Select All"}
+                  {isCompressing ? (
+                    <span className="flex items-center gap-2">
+                      <div className="h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent" />
+                      Processing...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">
+                      <IconPhoto size={18} />
+                      Compress {selectedIds.length > 0 && `(${selectedIds.length})`}
+                    </span>
+                  )}
                 </Button>
-              )}
-            </div>
+                {images.length > 0 && (
+                  <Button 
+                    variant="outline" 
+                    onClick={handleToggleSelectAll}
+                    className="bg-background/50"
+                  >
+                    {allSelected ? "Unselect All" : "Select All"}
+                  </Button>
+                )}
+              </div>
 
-            <div className="flex items-center gap-2">
-              <Button
-                variant="secondary"
-                disabled={images.length === 0 || isDownloadingAll}
-                onClick={handleDownloadAll}
-                className="bg-secondary/50"
-              >
-                {isDownloadingAll ? "Zipping..." : (
-                  <span className="flex items-center gap-2">
-                    <IconZip size={18} />
-                    Download ZIP
-                  </span>
-                )}
-              </Button>
-              {images.length > 0 && (
-                <Button 
-                  variant="outline" 
-                  onClick={handleRemoveSelected}
-                  disabled={selectedIds.length === 0}
-                  className="bg-background/50 text-destructive hover:bg-destructive/10 hover:text-destructive"
+              <div className="flex items-center gap-2">
+                <Button
+                  variant="secondary"
+                  disabled={images.length === 0 || isDownloadingAll}
+                  onClick={handleDownloadAll}
+                  className="bg-secondary/50"
                 >
-                  <span className="flex items-center gap-2">
-                    <IconTrash size={18} />
-                    Remove Selected
-                  </span>
+                  {isDownloadingAll ? "Zipping..." : (
+                    <span className="flex items-center gap-2">
+                      <IconZip size={18} />
+                      Download ZIP
+                    </span>
+                  )}
                 </Button>
-              )}
-              <Button 
-                variant="destructive" 
-                size="icon"
-                disabled={images.length === 0}
-                onClick={clearImages}
-                className="opacity-50 hover:opacity-100 transition-opacity"
-                title="Clear All"
-              >
-                <IconX size={18} />
-              </Button>
+                {images.length > 0 && (
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button 
+                        variant="outline" 
+                        onClick={handleRemoveSelected}
+                        disabled={selectedIds.length === 0}
+                        className="bg-background/50 text-destructive hover:bg-destructive/10 hover:text-destructive"
+                      >
+                        <span className="flex items-center gap-2">
+                          <IconTrash size={18} />
+                          Remove Selected
+                        </span>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Remove all selected images from the queue</TooltipContent>
+                  </Tooltip>
+                )}
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button 
+                      variant="destructive" 
+                      size="icon"
+                      disabled={images.length === 0}
+                      onClick={clearImages}
+                      className="opacity-50 hover:opacity-100 transition-opacity"
+                    >
+                      <IconX size={18} />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent>Clear the entire queue</TooltipContent>
+                </Tooltip>
+              </div>
             </div>
           </div>
         </CardContent>
@@ -417,7 +440,7 @@ export function ImageCompressor() {
 
       {/* Results Grid */}
       {images.length > 0 && (
-        <div className="space-y-4 animate-in slide-in-from-bottom-4 duration-500">
+    <div className="space-y-4 animate-in slide-in-from-bottom-4 duration-500">
           <div className="flex items-center justify-between px-2">
             <h2 className="text-lg font-semibold flex items-center gap-2">
               <IconLayersSubtract size={20} className="text-primary" />
@@ -428,8 +451,9 @@ export function ImageCompressor() {
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {images.map((item) => {
+          <ScrollArea className="h-[calc(100vh-400px)] pr-4">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 pb-4">
+              {images.map((item) => {
               const reduction = item.compressedSize 
                 ? Math.round(((item.originalSize - item.compressedSize) / item.originalSize) * 100)
                 : 0;
@@ -452,8 +476,13 @@ export function ImageCompressor() {
                           className="relative flex-1 group cursor-zoom-in overflow-hidden bg-muted flex items-center justify-center"
                           onClick={() => openPreview(item.previewUrl, `Original: ${item.file.name}`)}
                         >
-                          {/* eslint-disable-next-line @next/next/no-img-element */}
-                          <img src={item.previewUrl} className="max-w-full max-h-full object-contain grayscale-[0.2]" alt="Original" />
+                          <Image 
+                            src={item.previewUrl} 
+                            alt="Original" 
+                            fill
+                            unoptimized
+                            className="object-contain grayscale-[0.2]" 
+                          />
                           <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-[10px] text-white font-medium">Original</div>
                         </div>
                         <div 
@@ -465,8 +494,13 @@ export function ImageCompressor() {
                         >
                           {item.compressedUrl ? (
                             <>
-                              {/* eslint-disable-next-line @next/next/no-img-element */}
-                              <img src={item.compressedUrl} className="max-w-full max-h-full object-contain" alt="Compressed" />
+                              <Image 
+                                src={item.compressedUrl} 
+                                alt="Compressed" 
+                                fill
+                                unoptimized
+                                className="object-contain" 
+                              />
                               <div className="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-[10px] text-white font-medium">Compressed</div>
                             </>
                           ) : (
@@ -481,11 +515,9 @@ export function ImageCompressor() {
                       <div className="flex-1 p-4 flex flex-col min-w-0">
                         <div className="flex items-start justify-between gap-3 mb-auto">
                           <div className="flex items-center gap-3 min-w-0 flex-1">
-                            <input
-                              type="checkbox"
+                            <Checkbox
                               checked={isSelected}
-                              onChange={() => toggleSelect(item.id)}
-                              className="w-4 h-4 rounded border-border text-primary focus:ring-primary h-checkbox shrink-0"
+                              onCheckedChange={() => toggleSelect(item.id)}
                             />
                             <div className="min-w-0 flex-1">
                               <p className="text-sm font-semibold truncate leading-tight w-full" title={item.file.name}>{item.file.name}</p>
@@ -551,7 +583,8 @@ export function ImageCompressor() {
                 </Card>
               );
             })}
-          </div>
+            </div>
+          </ScrollArea>
         </div>
       )}
 
@@ -563,18 +596,20 @@ export function ImageCompressor() {
               {preview?.title}
             </DialogTitle>
           </DialogHeader>
-          <div className="p-2 md:p-6 flex items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat">
+          <div className="p-2 md:p-6 flex items-center justify-center bg-[url('https://grainy-gradients.vercel.app/noise.svg')] bg-repeat relative min-h-[400px]">
             {preview && (
-              /* eslint-disable-next-line @next/next/no-img-element */
-              <img
+              <Image
                 src={preview.url}
                 alt="Preview"
-                className="max-h-[70vh] w-auto object-contain shadow-2xl rounded-sm border border-white/5"
+                fill
+                unoptimized
+                className="object-contain p-4 drop-shadow-2xl"
               />
             )}
           </div>
         </DialogContent>
       </Dialog>
-    </div>
+      </div>
+    </TooltipProvider>
   );
 }
