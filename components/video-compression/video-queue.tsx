@@ -48,7 +48,7 @@ export function VideoQueue({
         <h3 className="text-sm font-medium text-foreground">Queue ({videos.length} videos)</h3>
       </div>
       
-      <ScrollArea className="h-[400px] border border-muted-foreground/10 bg-card/30 backdrop-blur-sm p-4">
+      <ScrollArea className="border border-muted-foreground/10 bg-card/30 backdrop-blur-sm p-4">
         <div className="space-y-3">
           {videos.map((video) => {
             const isSelected = selectedIds.includes(video.id);
