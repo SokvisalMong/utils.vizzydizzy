@@ -1,50 +1,19 @@
 import Link from "next/link";
-import {
-  IconPhoto,
-  IconQrcode,
-  IconPdf,
-  IconArrowRight
+import { 
+  IconArrowRight 
 } from "@tabler/icons-react";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle
+import { tools } from "@/constants/tools";
+import { 
+  Card, 
+  CardContent, 
+  CardDescription, 
+  CardHeader, 
+  CardTitle 
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { PageHeader } from "@/components/page-header";
 
-const tools = [
-  {
-    title: "Image Compressor",
-    description: "Optimize images for the web. Supports WebP, PNG, and JPEG with quality control.",
-    href: "/image-compression",
-    icon: IconPhoto,
-    status: "Active",
-    color: "text-blue-500",
-    bgColor: "bg-blue-500/10",
-  },
-  {
-    title: "QR Code Generator",
-    description: "QR Code generator for links, text, etc.",
-    href: "#",
-    icon: IconQrcode,
-    status: "Planned",
-    color: "text-purple-500",
-    bgColor: "bg-purple-500/10",
-  },
-  {
-    title: "PDF to Image",
-    description: "Convert PDF pages into JPEG or PNG images.",
-    href: "#",
-    icon: IconPdf,
-    status: "Planned",
-    color: "text-orange-500",
-    bgColor: "bg-orange-500/10",
-  },
-];
 
 export default function Home() {
   return (

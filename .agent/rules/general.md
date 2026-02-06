@@ -45,7 +45,10 @@ Prioritize client-side rendering and logic to ensure maximum UI responsiveness. 
         <rule>Place reusable UI elements in the <code>/components</code> directory. Use nested subdirectories within <code>/components</code> to group related UI.</rule>
         <rule>Strictly use Shadcn UI components for ALL UI elements whenever an equivalent exists. Avoid native HTML elements (e.g., use <code>Checkbox</code> instead of <code>&lt;input type="checkbox"&gt;</code>, <code>Separator</code> instead of horizontal lines/borders, and <code>next/image</code> instead of <code>&lt;img&gt;</code>).</rule>
       </ui_components>
-      <utility_logic>Place logic functions and helpers in the <code>/utils</code> directory. Use nested subdirectories within <code>/utils</code> to group related functionality.</utility_logic>
+      <utility_logic>
+        <rule>Place logic functions and helpers in the <code>/utils</code> directory. Use nested subdirectories within <code>/utils</code> to group related functionality.</rule>
+        <rule>Move all static data, configuration objects, and large constants (e.g., list of tools, menu items, settings) to the <code>/constants</code> directory. Avoid declaring these within component files.</rule>
+      </utility_logic>
     </project_organization>
 
     <mcp_configurations>
