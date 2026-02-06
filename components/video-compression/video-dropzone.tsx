@@ -50,7 +50,8 @@ export function VideoDropzone({ onFilesSelected, className }: VideoDropzoneProps
     <div
       className={cn(
         "relative border-2 border-dashed transition-all duration-200",
-        "bg-background/40 backdrop-blur-sm",
+        "bg-background/40 backdrop-blur-sm h-full",
+        "flex flex-col items-center justify-center",
         isDragging 
           ? "border-primary bg-primary/5 scale-[1.01]" 
           : "border-muted-foreground/20 hover:border-primary/50 hover:bg-primary/5",
