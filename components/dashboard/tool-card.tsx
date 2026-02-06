@@ -35,7 +35,7 @@ export function ToolCard({ tool }: ToolCardProps) {
       )}>
         <CardHeader>
           <div className="flex justify-between items-start mb-2">
-            <div className={cn("p-3 rounded-xl", tool.bgColor, tool.color)}>
+            <div className={cn("p-3", tool.bgColor, tool.color)}>
               <Icon size={28} />
             </div>
             {!isActive && (

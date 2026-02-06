@@ -36,10 +36,10 @@ export const tools: Tool[] = [
   },
   {
     title: "Video Compressor",
-    description: "Compress videos to a target size",
-    href: "#",
+    description: "Compress and resize videos entirely in the browser using FFmpeg.",
+    href: "/video-compression",
     icon: IconVideo,
-    status: "Planned",
+    status: "Active",
     color: "text-red-500",
     bgColor: "bg-red-500/10",
   }

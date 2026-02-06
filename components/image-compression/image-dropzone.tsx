@@ -1,76 +1,104 @@
 "use client";
 
-import React, { useRef, useState } from "react";
-import { IconUpload } from "@tabler/icons-react";
-import { Label } from "@/components/ui/label";
+import React, { useCallback, useRef, useState } from "react";
+import { IconUpload, IconPhoto } from "@tabler/icons-react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 interface ImageDropzoneProps {
-    onFilesSelected: (files: File[]) => void;
+  onFilesSelected: (files: File[]) => void;
+  className?: string;
 }
 
-export function ImageDropzone({ onFilesSelected }: ImageDropzoneProps) {
-    const [isDragging, setIsDragging] = useState(false);
-    const fileInputRef = useRef<HTMLInputElement | null>(null);
+export function ImageDropzone({
+  onFilesSelected,
+  className,
+}: ImageDropzoneProps) {
+  const [isDragging, setIsDragging] = useState(false);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
-    const handleFilesSelected = (event: React.ChangeEvent<HTMLInputElement>) => {
-        onFilesSelected(Array.from(event.target.files || []));
-        event.target.value = "";
-    };
+  const handleDragOver = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(true);
+  }, []);
 
-    const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setIsDragging(false);
-        const files = Array.from(event.dataTransfer.files || []);
-        onFilesSelected(files.filter((f) => f.type.startsWith("image/")));
-    };
+  const handleDragLeave = useCallback((e: React.DragEvent) => {
+    e.preventDefault();
+    setIsDragging(false);
+  }, []);
 
-    const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-        if (!isDragging) setIsDragging(true);
-    };
+  const handleDrop = useCallback(
+    (e: React.DragEvent) => {
+      e.preventDefault();
+      setIsDragging(false);
 
-    const handleDragLeave = (event: React.DragEvent<HTMLDivElement>) => {
-        event.preventDefault();
-        event.stopPropagation();
-        setIsDragging(false);
-    };
+      const files = Array.from(e.dataTransfer.files).filter((file) =>
+        file.type.startsWith("image/"),
+      );
 
-    return (
-        <div className="space-y-4">
-            <Label className="text-sm font-semibold">Upload Images</Label>
-            <div
-                onDragOver={handleDragOver}
-                onDragLeave={handleDragLeave}
-                onDrop={handleDrop}
-                onClick={() => fileInputRef.current?.click()}
-                className={cn(
-                    "relative group cursor-pointer flex flex-col items-center justify-center border-2 border-dashed transition-all duration-300 min-h-[160px] p-6 text-center",
-                    isDragging
-                        ? "border-primary bg-primary/5 ring-4 ring-primary/10"
-                        : "border-muted-foreground/20 hover:border-primary/50 hover:bg-accent/50"
-                )}
-            >
-                <div className="p-2  bg-primary/10 text-primary group-hover:scale-110 transition-transform duration-300">
-                    <IconUpload size={28} />
-                </div>
-                <p className="mt-4 text-sm font-medium">
-                    {isDragging ? "Drop your images here" : "Click or drag images to upload"}
-                </p>
-                <p className="mt-1 text-xs text-muted-foreground">
-                    Supports PNG, JPEG, WebP, AVIF
-                </p>
-                <input
-                    ref={fileInputRef}
-                    type="file"
-                    multiple
-                    accept="image/*"
-                    onChange={handleFilesSelected}
-                    className="hidden"
-                />
-            </div>
+      if (files.length > 0) {
+        onFilesSelected(files);
+      }
+    },
+    [onFilesSelected],
+  );
+
+  const handleFileChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      const files = e.target.files ? Array.from(e.target.files) : [];
+      if (files.length > 0) {
+        onFilesSelected(files);
+      }
+      // Reset value so same file can be selected again
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    },
+    [onFilesSelected],
+  );
+
+  return (
+    <div
+      className={cn(
+        "relative border-2 border-dashed transition-all duration-200",
+        "bg-background/40 backdrop-blur-sm",
+        isDragging
+          ? "border-primary bg-primary/5 scale-[1.01]"
+          : "border-muted-foreground/20 hover:border-primary/50 hover:bg-primary/5",
+        className,
+      )}
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
+      <input
+        type="file"
+        ref={fileInputRef}
+        onChange={handleFileChange}
+        accept="image/*"
+        multiple
+        className="hidden"
+      />
+
+      <div className="flex flex-col items-center justify-center py-10 px-4 text-center">
+        <div className="mb-4 bg-primary/10 p-4 text-primary">
+          <IconPhoto size={32} />
         </div>
-    );
+
+        <h3 className="mb-2 text-lg font-semibold text-foreground">
+          Upload Images
+        </h3>
+        <p className="mb-6 text-sm text-muted-foreground max-w-[240px]">
+          Drag and drop your images here, or click to browse.
+        </p>
+
+        <Button
+          onClick={() => fileInputRef.current?.click()}
+          variant="secondary"
+          className="bg-primary/10 hover:bg-primary/20 text-primary border-none rounded-none"
+        >
+          <IconUpload size={18} className="mr-2" />
+          Select Files
+        </Button>
+      </div>
+    </div>
+  );
 }
