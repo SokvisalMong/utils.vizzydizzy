@@ -23,7 +23,7 @@ export default function Home() {
         showBack={false}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
         {tools.map((tool) => {
           const Icon = tool.icon;
           const isActive = tool.status === "Active";
@@ -32,7 +32,10 @@ export default function Home() {
             <Link
               key={tool.title}
               href={tool.href}
-              className={isActive ? "group" : "cursor-not-allowed opacity-75"}
+              className={cn(
+                "flex flex-col w-full",
+                isActive ? "group" : "cursor-not-allowed opacity-75"
+              )}
             >
               <Card className={cn(
                 "h-full transition-all duration-300 border-none bg-card/50 backdrop-blur-sm",

@@ -35,7 +35,7 @@ export const tools: Tool[] = [
     bgColor: "bg-orange-500/10",
   },
   {
-    title: "Vidoe Compressor",
+    title: "Video Compressor",
     description: "Compress videos to a target size",
     href: "#",
     icon: IconVideo,
