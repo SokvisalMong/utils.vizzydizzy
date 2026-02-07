@@ -1,4 +1,4 @@
-import { OutputFormat } from "@/interfaces/image-compression";
+import type { OutputFormat } from "@/interfaces/image-compression";
 
 export function formatBytes(bytes: number): string {
   if (!bytes) return "0 B";
@@ -18,8 +18,8 @@ export function buildDownloadName(
     format === "image/webp"
       ? "webp"
       : format === "image/png"
-      ? "png"
-      : "jpg";
+        ? "png"
+        : "jpg";
   return `${base}.${ext}`;
 }
 

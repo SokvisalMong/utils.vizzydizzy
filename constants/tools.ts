@@ -1,7 +1,7 @@
-import { 
-  IconPhoto, 
-  IconQrcode, 
-  IconPdf, 
+import {
+  IconPhoto,
+  IconQrcode,
+  IconPdf,
   IconVideo
 } from "@tabler/icons-react";
 import { Tool } from "@/interfaces/tool";
@@ -27,10 +27,10 @@ export const tools: Tool[] = [
   },
   {
     title: "PDF to Image",
-    description: "Convert PDF pages into JPEG or PNG images.",
-    href: "#",
+    description: "Convert PDF pages into high-quality PNG images entirely in the browser.",
+    href: "/pdf-to-image",
     icon: IconPdf,
-    status: "Planned",
+    status: "Active",
     color: "text-orange-500",
     bgColor: "bg-orange-500/10",
   },

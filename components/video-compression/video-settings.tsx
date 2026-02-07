@@ -47,10 +47,10 @@ export function VideoSettings({ settings, onChange }: VideoSettingsProps) {
         </div>
         <Select
           value={settings.targetResolution.toString()}
-          onValueChange={(val) => 
-            onChange({ 
-              ...settings, 
-              targetResolution: (val === "original" ? "original" : parseInt(val)) as ResolutionHeight 
+          onValueChange={(val) =>
+            onChange({
+              ...settings,
+              targetResolution: (val === "original" ? "original" : parseInt(val)) as ResolutionHeight
             })
           }
         >
@@ -72,7 +72,7 @@ export function VideoSettings({ settings, onChange }: VideoSettingsProps) {
           <IconWeight size={20} />
           <Label className="text-sm font-medium">Target File Size</Label>
         </div>
-        
+
         <div className="flex gap-2">
           <div className="flex-1">
             <Input
@@ -122,7 +122,6 @@ export function VideoSettings({ settings, onChange }: VideoSettingsProps) {
           max={51}
           step={1}
           onValueChange={([val]) => onChange({ ...settings, crf: val })}
-          className="py-4"
         />
         <div className="flex justify-between text-[10px] text-muted-foreground uppercase tracking-wider">
           <span>Better Quality</span>
