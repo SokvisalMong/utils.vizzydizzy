@@ -94,20 +94,21 @@ export function ImageStudio() {
             </div>
           )}
 
-          {isGenerating && (
-            <div className="h-64 border-2 border-dashed border-border flex flex-col items-center justify-center text-muted-foreground bg-card/50 animate-pulse">
-               <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4" />
-               <p>Generating image</p>
-            </div>
-          )}
+          <div className="columns-1 md:columns-2 gap-6">
+            {isGenerating && (
+              <div className="h-64 border border-border flex flex-col items-center justify-center text-muted-foreground bg-card animate-pulse break-inside-avoid mb-6">
+                 <div className="w-8 h-8 border-4 border-primary border-t-transparent rounded-full animate-spin mb-4" />
+                 <p className="text-sm font-medium">Generating image...</p>
+              </div>
+            )}
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {images.map((imgBase64, i) => (
-              <ImageResultCard 
-                key={`${i}-${imgBase64.substring(0, 10)}`} 
-                base64Data={imgBase64} 
-                onRemove={() => removeImage(i)}
-              />
+              <div key={`${i}-${imgBase64.substring(0, 10)}`} className="break-inside-avoid mb-6">
+                <ImageResultCard 
+                  base64Data={imgBase64} 
+                  onRemove={() => removeImage(i)}
+                />
+              </div>
             ))}
           </div>
         </div>
