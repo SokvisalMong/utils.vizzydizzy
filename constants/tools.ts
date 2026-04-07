@@ -2,7 +2,8 @@ import {
   IconPhoto,
   IconQrcode,
   IconPdf,
-  IconVideo
+  IconVideo,
+  IconSparkles
 } from "@tabler/icons-react";
 import { Tool } from "@/interfaces/tool";
 
@@ -42,5 +43,14 @@ export const tools: Tool[] = [
     status: "Active",
     color: "text-red-500",
     bgColor: "bg-red-500/10",
+  },
+  {
+    title: "AI Image Studio",
+    description: "Generate and edit images using Google's Imagen 3 model via your own API key.",
+    href: "/ai-image-studio",
+    icon: IconSparkles,
+    status: "Active",
+    color: "text-yellow-500",
+    bgColor: "bg-yellow-500/10",
   }
 ];
