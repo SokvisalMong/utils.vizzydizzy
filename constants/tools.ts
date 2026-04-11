@@ -1,4 +1,5 @@
 import {
+  IconGif,
   IconPhoto,
   IconQrcode,
   IconPdf,
@@ -43,6 +44,15 @@ export const tools: Tool[] = [
     status: "Active",
     color: "text-red-500",
     bgColor: "bg-red-500/10",
+  },
+  {
+    title: "GIF Splitter",
+    description: "Extract individual frames from an animated GIF as high-quality PNG images.",
+    href: "/gif-splitter",
+    icon: IconGif,
+    status: "Active",
+    color: "text-green-500",
+    bgColor: "bg-green-500/10",
   },
   {
     title: "AI Image Studio",
