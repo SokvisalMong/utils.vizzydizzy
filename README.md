@@ -1,5 +1,14 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Utilities
+
+Available tools run entirely in the browser:
+
+- [Image Compressor](/image-compression)
+- [PDF to Image](/pdf-to-image)
+- [Video Compressor](/video-compression)
+- [GIF Splitter](/gif-splitter)
+
 ## Getting Started
 
 First, run the development server:
